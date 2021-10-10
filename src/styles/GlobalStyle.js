@@ -17,8 +17,9 @@ const GlobalStyle = createGlobalStyle`
     border-style: none;
   }
 
-  a {
+  a, a:visited{
     text-decoration: none;
+    color:black;
   }
 
   ol, ul, li {

@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Userlogin } from '../redux/user';
 import styled from 'styled-components';
 
 const Login = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [loginInput, setLoginInput] = useState({
     email: '',
     password: '',
@@ -21,10 +24,17 @@ const Login = () => {
       alert('이메일과 비밀번호가 제대로 입력되었나요?');
     } else {
       localStorage.setItem('token', 'loggedIn');
+      dispatch(Userlogin('loggedIn'));
       alert('로그인 성공!');
-      history.push('/');
+      history.push('/main');
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      history.push('/main');
+    }
+  }, []);
 
   return (
     <LoginWrapper>
