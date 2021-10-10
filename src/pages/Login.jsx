@@ -7,6 +7,8 @@ import styled from 'styled-components';
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const storageToken = localStorage.getItem('token');
+
   const [loginInput, setLoginInput] = useState({
     email: '',
     password: '',
@@ -31,7 +33,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (storageToken) {
       history.push('/main');
     }
   }, []);

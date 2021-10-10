@@ -14,29 +14,37 @@ const Header = () => {
   };
   return (
     <HeaderWrapper>
-      <ImgItem src="/img/tflogo.png" />
-      {userToken || storageToken ? (
+      <InnerWrapper>
         <Link to="/">
-          <CategoryItem onClick={pageLogout}>로그아웃</CategoryItem>
+          <ImgItem src="/img/tflogo.png" />
         </Link>
-      ) : (
-        ''
-      )}
+        {userToken || storageToken ? (
+          <Link to="/">
+            <CategoryItem onClick={pageLogout}>로그아웃</CategoryItem>
+          </Link>
+        ) : (
+          ''
+        )}
+      </InnerWrapper>
     </HeaderWrapper>
   );
 };
 
 export default Header;
 const HeaderWrapper = styled.header`
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
+  border-bottom: 2px solid ${({ theme }) => theme.gray};
   position: sticky;
   top: 0;
+  z-index: 10000;
+`;
+
+const InnerWrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid ${({ theme }) => theme.gray};
   background-color: ${({ theme }) => theme.white};
 `;
 
@@ -49,6 +57,6 @@ const CategoryItem = styled.div`
   cursor: pointer;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   &:hover {
-    color: ${({ theme }) => theme.navColor};
+    color: ${({ theme }) => theme.mainColor};
   }
 `;

@@ -25,7 +25,8 @@ const config = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: [],
+          // async,await 문법 적용 플러그인
+          plugins: ['@babel/plugin-transform-runtime'],
           // 핫 리로딩 적용
           env: {
             development: {
