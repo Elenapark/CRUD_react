@@ -14,7 +14,7 @@ const config = {
   },
   // 입력
   entry: {
-    app: './Index',
+    app: './src/Index',
   },
   module: {
     rules: [
