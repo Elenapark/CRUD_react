@@ -1,12 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
 import Card from './Card';
+import styled from 'styled-components';
 
-const CardList = ({ data }) => {
+const CardList = ({ data, dataEditing, setDataEditing, editingText, setEditingText, handleUpdate, handleRemove }) => {
   return (
     <MainWrapper>
       {data?.map((el, idx) => {
-        return <Card data={el} key={el.title + idx} />;
+        return (
+          <Card
+            data={el}
+            key={el.title + idx}
+            dataEditing={dataEditing}
+            setDataEditing={setDataEditing}
+            editingText={editingText}
+            setEditingText={setEditingText}
+            handleUpdate={handleUpdate}
+            handleRemove={handleRemove}
+          />
+        );
       })}
     </MainWrapper>
   );

@@ -8,23 +8,27 @@ const Header = () => {
   const userToken = useSelector((state) => state.user.token);
   const storageToken = localStorage.getItem('token');
   const dispatch = useDispatch();
+
   const pageLogout = () => {
     localStorage.clear();
     dispatch(Userlogout());
   };
+
   return (
     <HeaderWrapper>
       <InnerWrapper>
         <Link to="/">
           <ImgItem src="/img/tflogo.png" />
         </Link>
-        {userToken || storageToken ? (
-          <Link to="/">
-            <CategoryItem onClick={pageLogout}>로그아웃</CategoryItem>
-          </Link>
-        ) : (
-          ''
-        )}
+        <NavItem>
+          {userToken || storageToken ? (
+            <Link to="/">
+              <CategoryItem onClick={pageLogout}>로그아웃</CategoryItem>
+            </Link>
+          ) : (
+            ''
+          )}
+        </NavItem>
       </InnerWrapper>
     </HeaderWrapper>
   );
@@ -50,6 +54,10 @@ const InnerWrapper = styled.div`
 
 const ImgItem = styled.img`
   width: 150px;
+`;
+
+const NavItem = styled.nav`
+  display: flex;
 `;
 
 const CategoryItem = styled.div`

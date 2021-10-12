@@ -22,8 +22,12 @@ const Login = () => {
   const { email, password } = loginInput;
 
   const handleLogin = () => {
-    if (!email.includes('@') || password.length < 8) {
-      alert('이메일과 비밀번호가 제대로 입력되었나요?');
+    if (!email.includes('@')) {
+      alert('이메일의 형식을 다시 확인해주세요.');
+    } else if (email.length < 11) {
+      alert('이메일은 11자 이상이어야 합니다.');
+    } else if (password.length < 8) {
+      alert('비밀번호는 8자 이상이어야 합니다.');
     } else {
       localStorage.setItem('token', 'loggedIn');
       dispatch(Userlogin('loggedIn'));
@@ -32,6 +36,7 @@ const Login = () => {
     }
   };
 
+  // 기존에 로그인 했던 유저인 경우 메인 페이지로 이동
   useEffect(() => {
     if (storageToken) {
       history.push('/main');
